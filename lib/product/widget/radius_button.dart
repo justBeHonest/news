@@ -4,7 +4,7 @@ import 'package:news/product/utility/theme/colors.dart';
 
 class RadiusButton extends StatelessWidget {
   final VoidCallback? onPressed;
-  final String text;
+  final String? text;
   final FontWeight? fontWeight;
   final Color? textColor;
   final IconData? leftIcon;
@@ -25,7 +25,7 @@ class RadiusButton extends StatelessWidget {
     this.rightIcon,
     this.textColor,
     required this.onPressed,
-    required this.text,
+    this.text,
     this.leftIcon,
   }) : super(key: key);
   @override
@@ -56,14 +56,16 @@ class RadiusButton extends StatelessWidget {
                   color: white,
                 ).paddingRight(8)
               : SizedBox(),
-          Text(
-            text,
-            style: boldTextStyle(
-              color: textColor ?? white,
-              weight: fontWeight,
-              size: textSize,
-            ),
-          ),
+          text != null
+              ? Text(
+                  text!,
+                  style: boldTextStyle(
+                    color: textColor ?? white,
+                    weight: fontWeight,
+                    size: textSize,
+                  ),
+                )
+              : SizedBox(),
           rightIcon != null
               ? Icon(
                   rightIcon,

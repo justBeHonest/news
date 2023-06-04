@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:news/features/news_home/cubit/news_home_cubit.dart';
 import 'package:news/features/news_home/service/new_home_service.dart';
 import 'package:news/product/network/news_network_manager.dart';
 import 'package:news/product/widget/app_bar_widget.dart';
+import 'package:news/product/widget/favorite_button.dart';
+import 'package:news/product/widget/h2.dart';
+import 'package:news/product/widget/h3.dart';
 import 'package:news/product/widget/news_card.dart';
 
 class NewsHomeView extends StatefulWidget {
@@ -21,7 +25,7 @@ class _NewsHomeViewState extends State<NewsHomeView> {
       if (_scrollController.position.pixels >
           _scrollController.position.maxScrollExtent) {
         //context.read<NewsHomeCubit>().fetchNewItems();
-        print("Pagination implement edilecek");
+        // TODO : Pagination implement edilecek
       }
     });
   }
@@ -49,35 +53,60 @@ class _NewsHomeViewState extends State<NewsHomeView> {
           itemCount: state.newsModel?.articles?.length,
           controller: _scrollController,
           itemBuilder: (context, index) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                NewsCard(model: state.newsModel?.articles?[index]),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('${state.newsModel?.articles?[index].author}'),
-                    Text('${state.newsModel?.articles?[index].content}'),
-                    Text('${state.newsModel?.articles?[index].description}'),
-                    Text('${state.newsModel?.articles?[index].publishedAt}'),
-                    Text('${state.newsModel?.articles?[index].source?.name}'),
-                    Text('${state.newsModel?.articles?[index].title}'),
-                    TextButton(
-                      child: Text('${state.newsModel?.articles?[index].url}'),
-                      onPressed: () {
-                        context
-                            .read<NewsHomeCubit>()
-                            .openUrl(state.newsModel?.articles?[index].url);
-                      },
-                    ),
-                    Icon(Icons.add),
-                  ],
-                ),
-              ],
-            );
+            return _newsDetails(state, index, context);
           },
         );
       },
     );
+  }
+
+  Column _newsDetails(NewsHomeState state, int index, BuildContext context) {
+    return Column(
+      children: [
+        H2(
+          '${state.newsModel?.articles?[index].title}',
+          textAlign: TextAlign.center,
+        ),
+        _verticalSpace(),
+        NewsImage(url: state.newsModel?.articles?[index].urlToImage),
+        _verticalSpace(),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            H3('${state.newsModel?.articles?[index].content}'),
+            _verticalSpace(),
+            H3('${state.newsModel?.articles?[index].description}'),
+            _verticalSpace(),
+            H3('Author : ${state.newsModel?.articles?[index].author}'),
+            _verticalSpace(),
+            H3('Published at : ${state.newsModel?.articles?[index].publishedAt}'),
+            _verticalSpace(),
+            H3('Source : ${state.newsModel?.articles?[index].source?.name}'),
+            _verticalSpace(),
+            InkWell(
+              child: H3(
+                '${state.newsModel?.articles?[index].url}',
+                color: blueColor,
+              ),
+              onTap: () {
+                context
+                    .read<NewsHomeCubit>()
+                    .openUrl(state.newsModel?.articles?[index].url);
+              },
+            ),
+            _verticalSpace(),
+            FavoriteButton(
+              isSelected: false,
+              onTap: () {},
+            ).center(),
+            Divider(thickness: 5, height: 60),
+          ],
+        ).paddingAll(16),
+      ],
+    );
+  }
+
+  Widget _verticalSpace() {
+    return SizedBox(height: 12);
   }
 }
