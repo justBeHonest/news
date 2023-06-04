@@ -1,3 +1,4 @@
+import 'package:news/features/home/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -9,14 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      theme: ThemeData.dark(),
+      home: HomeView(),
     );
   }
 }
