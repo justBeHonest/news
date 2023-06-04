@@ -1,0 +1,7 @@
+{
+    "import sorting script": "flutter pub run import_sorter:main",
+    "build runner script": "flutter packages pub run build_runner build",
+    "build runner script with delete conflig files" : "flutter packages pub run build_runner watch --delete-conflicting-outputs",
+    "easy localization": "flutter pub run easy_localization:generate -S \"assets/translations\" -O \"lib/core/init/translations\" -f keys",
+    "flutter_launcher_icons": "flutter pub run flutter_launcher_icons:main"
+}
