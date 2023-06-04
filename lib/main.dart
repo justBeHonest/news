@@ -1,5 +1,5 @@
-import 'package:news/features/home/view/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:news/features/news_home/view/news_home.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       theme: ThemeData.dark(),
-      home: HomeView(),
+      home: NewsHome(),
     );
   }
 }
