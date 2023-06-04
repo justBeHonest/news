@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/features/news_home/cubit/news_home_cubit.dart';
 import 'package:news/features/news_home/service/new_home_service.dart';
 import 'package:news/product/network/news_network_manager.dart';
-import 'package:news/product/widget/fixed_app_bar_white_theme.dart';
+import 'package:news/product/widget/app_bar_widget.dart';
 import 'package:news/product/widget/news_card.dart';
 
 class NewsHomeView extends StatefulWidget {
@@ -31,7 +31,7 @@ class _NewsHomeViewState extends State<NewsHomeView> {
     return BlocProvider(
       create: (context) => NewsHomeCubit(NewsHomeService(NewsNetworkManager())),
       child: Scaffold(
-        appBar: FixedAppBarWhiteTheme(),
+        appBar: AppBarWidget(),
         body: _bodyListView(),
       ),
     );
