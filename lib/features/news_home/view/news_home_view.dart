@@ -21,7 +21,7 @@ class _NewsHomeViewState extends State<NewsHomeView> {
       if (_scrollController.position.pixels >
           _scrollController.position.maxScrollExtent) {
         //context.read<NewsHomeCubit>().fetchNewItems();
-        print("Pagination implement edilecek");
+        // TODO : Pagination will be implemented
       }
     });
   }
@@ -52,26 +52,13 @@ class _NewsHomeViewState extends State<NewsHomeView> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                NewsCard(model: state.newsModel?.articles?[index]),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('${state.newsModel?.articles?[index].author}'),
-                    Text('${state.newsModel?.articles?[index].content}'),
-                    Text('${state.newsModel?.articles?[index].description}'),
-                    Text('${state.newsModel?.articles?[index].publishedAt}'),
-                    Text('${state.newsModel?.articles?[index].source?.name}'),
-                    Text('${state.newsModel?.articles?[index].title}'),
-                    TextButton(
-                      child: Text('${state.newsModel?.articles?[index].url}'),
-                      onPressed: () {
-                        context
-                            .read<NewsHomeCubit>()
-                            .openUrl(state.newsModel?.articles?[index].url);
-                      },
-                    ),
-                    Icon(Icons.add),
-                  ],
+                NewsCard(
+                  model: state.newsModel?.articles?[index],
+                  onPressed: () {
+                    context
+                        .read<NewsHomeCubit>()
+                        .openUrl(state.newsModel?.articles?[index].url);
+                  },
                 ),
               ],
             );
