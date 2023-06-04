@@ -7,8 +7,10 @@ class ApplicationConstant {
 
   ApplicationConstant._init();
 
-  final String baseUrl = 'https://fakestoreapi.com/';
+  final String productBaseUrl = 'https://fakestoreapi.com/';
   final String dummyImage = "https://picsum.photos/200/300";
+  final String newsBaseUrl = "https://newsapi.org/";
+  final String apiKey = "77f4d965a1744dafa6e760b710d61a72";
 }
 
 double kZero = 0;
