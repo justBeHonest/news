@@ -5,5 +5,6 @@ import 'package:vexana/vexana.dart';
 class ProductNetworkManager extends NetworkManager<ProductModel> {
   ProductNetworkManager()
       : super(
-            options: BaseOptions(baseUrl: ApplicationConstant.instane.baseUrl));
+            options: BaseOptions(
+                baseUrl: ApplicationConstant.instane.productBaseUrl));
 }
