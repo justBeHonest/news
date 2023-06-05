@@ -9,8 +9,6 @@ abstract class INewsHomeService {
   late final INetworkManager _networkManager;
   INewsHomeService(INetworkManager networkManager)
       : _networkManager = networkManager;
-  // Future<List<ProductModel>?> fetchAllProducts({int count = 5});
-  // Future<List<String>?> fetchAllCategories();
   Future<NewsModel?> fetchAllNews(
       {required String q, int? pageSize, int? page, String? apiKey});
 }
@@ -37,12 +35,4 @@ class NewsHomeService extends INewsHomeService {
     );
     return response.data;
   }
-
-  // @override
-  // Future<List<String>?> fetchAllCategories() async {
-  //   final response = await _networkManager.sendPrimitive(
-  //       '${_NewsHomeServicePath.products.name}/${_NewsHomeServicePath.categories.name}');
-  //   return response is List ? response.map((e) => '$e').toList() : null;
-  //   // https://fakestoreapi.com/products/categories
-  // }
 }

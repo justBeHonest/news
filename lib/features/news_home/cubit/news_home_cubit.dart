@@ -11,7 +11,6 @@ class NewsHomeCubit extends Cubit<NewsHomeState> {
     initialComplete();
   }
   final INewsHomeService homeService;
-  // List<ProductModel>? products;
 
   Future<void> initialComplete() async {
     await Future.wait([fetchAllItems()]);

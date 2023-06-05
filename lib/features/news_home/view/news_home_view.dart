@@ -53,6 +53,7 @@ class _NewsHomeViewState extends State<NewsHomeView> {
           itemCount: state.newsModel?.articles?.length,
           controller: _scrollController,
           itemBuilder: (context, index) {
+            // TODO : The _newsDetails method should be deleted and added to the NewsImage component, when I added it, I couldn't manage the state management and left it as a method.
             return _newsDetails(state, index, context);
           },
         );

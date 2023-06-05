@@ -1,5 +1,6 @@
 enum NewsQueries { q, apiKey, pageSize, page }
 
+// TODO : This enum should be optimized, it's working now but unnecessary processing is done in the algorithm
 extension NewsQueriesExtention on NewsQueries {
   MapEntry<String, String> toMapEntry({
     String? q,
