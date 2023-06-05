@@ -22,6 +22,7 @@ class NewsHomeCubit extends Cubit<NewsHomeState> {
 
   Future<void> fetchAllItems() async {
     _changeLoading();
+    // TODO : this q: "bitcoin" is sample, It should be deleted from here and taken as a parameter with a component like a drop down button on the view.
     final response = await homeService.fetchAllNews(q: "bitcoin");
     emit(state.copyWith(newsModel: response));
     _changeLoading();
